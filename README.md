@@ -1,5 +1,5 @@
 ### It's me, hello 👋
 
-[![Visitors](https://visitor-badge.glitch.me/badge?page_id=mdxprograms.visitor-badge)]
+![Visitor Count](https : //profile-counter.glitch.me/mdxprograms/count.svg)
 
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mdxprograms&count_private=true&show_icons=true&theme=dracula)](https://github.com/mdxprograms/github-readme-stats)
