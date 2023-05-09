@@ -1,12 +1,19 @@
-import { dom, mount } from '@wallerbuilt/mycelia'
-import Sample from '@/components/Sample'
+import { dom, mount } from "@wallerbuilt/mycelia";
+import Sample from "@/components/Sample";
 
-import './style.css'
+import "./style.css";
 
-const appSelector = "#app"
+const appSelector = "#app";
+const headerSelector = "#header";
+const footerSelector = "#footer";
 
-const { div } = dom
+const { main, section } = dom;
 
-const App = div({}, Sample)
+const Header = section("header goes here");
+mount(Header, headerSelector);
 
-mount(App, appSelector)
+const App = main({}, Sample);
+mount(App, appSelector);
+
+const Footer = section("Footer goes here");
+mount(Footer, footerSelector);
