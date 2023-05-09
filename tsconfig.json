@@ -23,6 +23,7 @@
       "@/components/*": ["src/components/*"],
       "@/types/*": ["src/types/*"],
       "@/events/*": ["src/events/*"],
+      "@/pages/*": ["src/pages/*"],
     }
 
   },

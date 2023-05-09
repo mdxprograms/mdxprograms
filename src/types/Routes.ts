@@ -1,7 +1,7 @@
-export enum Routes {
-	Home = "home",
-	About = "about",
-}
+export const Routes = {
+	Home: "home",
+	About: "about",
+} as const;
 
 export const RouteEvents = {
 	GoHome: "pageChange:home",
