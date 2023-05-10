@@ -1,8 +1,7 @@
 import State from "@/types/State";
-import { Routes } from "@/types/Routes";
 
 let state: State = {
-	route: Routes.Home
-}
+  route: "home",
+};
 
-export default state
+export default state;

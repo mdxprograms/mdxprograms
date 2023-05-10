@@ -1,7 +1,7 @@
 import { Routes } from "@/types/Routes";
 
 type State = {
-	route: typeof Routes;
+  route: Routes;
 };
 
 export default State;

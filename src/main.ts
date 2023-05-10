@@ -2,8 +2,8 @@ import { dom, mount } from "@wallerbuilt/mycelia";
 
 import Nav from "@/components/Nav";
 import { routes } from "@/events/index";
-import Sample from "@/pages/Sample";
-import Sample2 from "@/pages/About";
+import HomePage from "@/pages/Home";
+import AboutPage from "@/pages/About";
 import "./style.css";
 
 const appSelector = "#app";
@@ -16,7 +16,7 @@ const { main, section } = dom;
 mount(Nav, headerSelector);
 
 // Mount app
-const App = main({}, Sample);
+const App = main({}, HomePage);
 mount(App, appSelector);
 
 // Mount footer
@@ -25,11 +25,11 @@ mount(Footer, footerSelector);
 
 // Apply page level route changes
 routes.onGoHome(() => {
-	App.removeChild(Sample2);
-	App.appendChild(Sample);
+  App.innerHTML = "";
+  App.appendChild(HomePage);
 });
 
 routes.onGoAbout(() => {
-	App.removeChild(Sample);
-	App.appendChild(Sample2);
+  App.innerHTML = "";
+  App.appendChild(AboutPage);
 });
