@@ -1,10 +1,11 @@
 import { dom, mount } from "@wallerbuilt/mycelia";
 
 import Nav from "@/components/Nav";
-import { routes } from "@/events/index";
 import HomePage from "@/pages/Home";
 import AboutPage from "@/pages/About";
-import "./style.css";
+
+import "./styles.css";
+import { routes as routeEvents } from "./events";
 
 const appSelector = "#app";
 const headerSelector = "#header";
@@ -24,12 +25,12 @@ const Footer = section("Footer goes here");
 mount(Footer, footerSelector);
 
 // Apply page level route changes
-routes.onGoHome(() => {
+routeEvents.onGoHome(() => {
   App.innerHTML = "";
   App.appendChild(HomePage);
 });
 
-routes.onGoAbout(() => {
+routeEvents.onGoAbout(() => {
   App.innerHTML = "";
   App.appendChild(AboutPage);
 });
