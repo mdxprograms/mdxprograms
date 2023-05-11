@@ -1,1 +1,3 @@
-export const routes = ["home", "about"];
+import { Routes } from "./types/Routes";
+
+export const routes: Routes[] = ["home", "about"];

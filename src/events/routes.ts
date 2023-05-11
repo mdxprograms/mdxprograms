@@ -1,6 +1,6 @@
 import { Emitter } from "@wallerbuilt/mycelia";
 import State from "@/types/State";
-import { RouteEvents } from "@/types/Routes";
+import { RouteEvents, Routes } from "@/types/Routes";
 import state from "../state";
 
 export const routeEvents = (emit: Emitter<State>) => ({
@@ -14,7 +14,7 @@ export const routeEvents = (emit: Emitter<State>) => ({
   },
   onGoHome: emit.on(RouteEvents.GoHome),
   onGoAbout: emit.on(RouteEvents.GoAbout),
-  changeRoute(route: string): void {
+  changeRoute(route: Routes): void {
     switch (route) {
       case "home":
         this.goHome();
