@@ -3,9 +3,11 @@ import { dom, mount } from "@wallerbuilt/mycelia";
 import Nav from "@/components/Nav";
 import HomePage from "@/pages/Home";
 import AboutPage from "@/pages/About";
+import StorePage from "@/pages/Store";
 
 import "./styles.css";
 import { routes as routeEvents } from "./events";
+import { Routes } from "./types/Routes";
 
 const appSelector = "#app";
 const headerSelector = "#header";
@@ -24,13 +26,39 @@ mount(App, appSelector);
 const Footer = section("Footer goes here");
 mount(Footer, footerSelector);
 
-// Apply page level route changes
-routeEvents.onGoHome(() => {
-  App.innerHTML = "";
-  App.appendChild(HomePage);
-});
+// apply explicit App view changes
+const addHomePage = () => App.appendChild(HomePage);
+const addAboutPage = () => App.appendChild(AboutPage);
+const addStorePage = () => App.appendChild(StorePage);
 
-routeEvents.onGoAbout(() => {
+// routing helper
+const routeTo = (key: Routes) => () => {
   App.innerHTML = "";
-  App.appendChild(AboutPage);
-});
+
+  switch (key) {
+    case "home":
+      addHomePage();
+      return;
+    case "about":
+      addAboutPage();
+      return;
+    case "store":
+      addStorePage();
+      return;
+
+    default:
+      addHomePage();
+      return;
+  }
+};
+
+// Apply page level route changes
+
+/* home */
+routeEvents.onGoHome(routeTo("home"));
+
+/* about */
+routeEvents.onGoAbout(routeTo("about"));
+
+/* store */
+routeEvents.onGoStore(routeTo("store"));

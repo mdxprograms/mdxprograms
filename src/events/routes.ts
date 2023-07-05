@@ -12,8 +12,13 @@ export const routeEvents = (emit: Emitter<State>) => ({
     state.route = "about";
     emit.dispatch(RouteEvents.GoAbout)(state);
   },
+  goStore(): void {
+    state.route = "store";
+    emit.dispatch(RouteEvents.GoStore)(state);
+  },
   onGoHome: emit.on(RouteEvents.GoHome),
   onGoAbout: emit.on(RouteEvents.GoAbout),
+  onGoStore: emit.on(RouteEvents.GoStore),
   changeRoute(route: Routes): void {
     switch (route) {
       case "home":
@@ -22,6 +27,10 @@ export const routeEvents = (emit: Emitter<State>) => ({
 
       case "about":
         this.goAbout();
+        break;
+
+      case "store":
+        this.goStore();
         break;
 
       default:
