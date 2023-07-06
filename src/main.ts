@@ -9,11 +9,13 @@ import "./styles.css";
 import { routes as routeEvents } from "./events";
 import { Routes } from "./types/Routes";
 
+import "./wb-dropdown";
+
 const appSelector = "#app";
 const headerSelector = "#header";
 const footerSelector = "#footer";
 
-const { main, section } = dom;
+const { main, section, div } = dom;
 
 // Mount nav to header
 mount(Nav, headerSelector);
@@ -62,3 +64,5 @@ routeEvents.onGoAbout(routeTo("about"));
 
 /* store */
 routeEvents.onGoStore(routeTo("store"));
+
+App.insertAdjacentHTML("beforeend", "<wb-dropdown></wb-dropdown>");
