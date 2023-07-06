@@ -4,18 +4,18 @@ import Nav from "@/components/Nav";
 import HomePage from "@/pages/Home";
 import AboutPage from "@/pages/About";
 import StorePage from "@/pages/Store";
+import Dropdown from "./dropdown";
+import "./wb-dropdown";
 
 import "./styles.css";
 import { routes as routeEvents } from "./events";
 import { Routes } from "./types/Routes";
 
-import "./wb-dropdown";
-
 const appSelector = "#app";
 const headerSelector = "#header";
 const footerSelector = "#footer";
 
-const { main, section, div } = dom;
+const { main, section } = dom;
 
 // Mount nav to header
 mount(Nav, headerSelector);
@@ -65,4 +65,8 @@ routeEvents.onGoAbout(routeTo("about"));
 /* store */
 routeEvents.onGoStore(routeTo("store"));
 
+// Example using web component class
 App.insertAdjacentHTML("beforeend", "<wb-dropdown></wb-dropdown>");
+
+// Example using mycelia only
+App.appendChild(Dropdown);

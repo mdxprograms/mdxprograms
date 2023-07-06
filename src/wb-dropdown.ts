@@ -1,43 +1,41 @@
 import { dom } from "@wallerbuilt/mycelia";
 
-const { template, button, div, style } = dom;
+const { button, div, style } = dom;
 
 const dropdownStyle = style(`
 	:host {
 		align-items: center;
+		background: #222;
+		border: 2px solid #222;
 		display: flex;
 		flex-direction: column;
-		width: fit-content;
+		max-width: 300px;
+		justify-content: center;
+		width: 100%;
 	}
 
 	.toggle {
 		background: #444;
 		border: none;
-		box-shadow: 0 0 2px #444;
 		color: white;
 		cursor: pointer;
 		padding: 6px 12px;
-		width: fill-content;
-		margin: auto;
+		width: 100%;
 	}
 
 	.list {
+		color: white;
 		flex-direction: column;
-		border-top: none;
-		border: 2px solid transparent;
-		opacity: 0;
+		visibility: hidden;
+		transition: all 120ms ease-in-out;
 		height: 0;
-		padding: 0;
-		transition: all 200ms ease-in;
-		width: fill-content;
 	}
 
 	.list.open {
-		border-color: #444;
-		opacity: 1;
-		overflow-y: scroll;
-		padding: 8px;
-		height: auto;
+		visibility: visible;
+		height: 100%;
+		width: fit-content;
+		padding: 8px 0;
 	}
 `);
 
@@ -48,8 +46,6 @@ const list = div({ className: "list" }, [
 
 const btn = button({ className: "toggle" }, "toggle me") as HTMLButtonElement;
 
-const tmp = template({}, div({}, [dropdownStyle, btn, list]));
-
 class WBDropdown extends HTMLElement {
   private toggleBtn: HTMLButtonElement;
   private list: HTMLElement;
@@ -58,14 +54,14 @@ class WBDropdown extends HTMLElement {
     super();
     // shadowRoot
     const shadowRoot = this.attachShadow({ mode: "open" });
-    tmp.childNodes.forEach((child) => shadowRoot.appendChild(child));
+    shadowRoot.appendChild(dropdownStyle);
+    shadowRoot.appendChild(btn);
+    shadowRoot.appendChild(list);
 
     // elements
-    this.toggleBtn = this.shadowRoot?.querySelector(
-      ".toggle"
-    ) as HTMLButtonElement;
+    this.toggleBtn = shadowRoot?.querySelector(".toggle") as HTMLButtonElement;
 
-    this.list = this.shadowRoot?.querySelector(".list") as HTMLElement;
+    this.list = shadowRoot?.querySelector(".list") as HTMLElement;
 
     // bind events
     this.toggleList = this.toggleList.bind(this);
@@ -76,7 +72,6 @@ class WBDropdown extends HTMLElement {
   connectedCallback() {}
 
   toggleList() {
-    console.log(this.list);
     if (this.list?.classList.contains("open")) {
       this.list.classList.remove("open");
     } else {
