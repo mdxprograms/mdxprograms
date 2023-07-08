@@ -6,6 +6,7 @@ import AboutPage from "@/pages/About";
 import StorePage from "@/pages/Store";
 import Dropdown from "./dropdown";
 import "./wb-dropdown";
+import "@/pages/WebComponents/index";
 
 import "./styles.css";
 import { routes as routeEvents } from "./events";
@@ -64,6 +65,8 @@ routeEvents.onGoAbout(routeTo("about"));
 
 /* store */
 routeEvents.onGoStore(routeTo("store"));
+
+App.insertAdjacentHTML("afterbegin", "<wb-nav></wb-nav>");
 
 // Example using web component class
 App.insertAdjacentHTML("beforeend", "<wb-dropdown></wb-dropdown>");
